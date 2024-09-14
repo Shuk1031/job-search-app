@@ -26,17 +26,30 @@ import React, { useState, useEffect } from "react";
 import JobCategoryFilter from "./JobCategoryFilter";
 import SalaryFilter from "./SalaryFilter";
 import JobList from "./JobList";
-import { fetchJobs } from "../api";  // API呼び出しをインポート
+import { fetchJobs } from "../api";
 
 const JobSearchPage: React.FC = () => {
   const [category, setCategory] = useState<string>('');  // カテゴリの状態
-  const [salary, setSalary] = useState<number>(300);  // 年収の状態
+  const [salary, setSalary] = useState<number>(0);  // 年収の状態（0は全ての年収）
   const [jobs, setJobs] = useState([]);  // 取得した求人のリスト
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);  // エラーメッセージ
 
-  // フィルタの変更時に求人を再取得
   useEffect(() => {
-    fetchJobs({ category, salary }).then(setJobs);  // APIから求人を取得
-  }, [category, salary]);
+    const loadJobs = async () => {
+      setLoading(true);
+      try {
+        const fetchedJobs = await fetchJobs({ category, salary });
+        setJobs(fetchedJobs);
+      } catch (err) {
+        setError("データの取得に失敗しました。");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadJobs();  // 初期ロード時に全求人を取得
+  }, [category, salary]);  // フィルタ変更時も再取得
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row bg-gray-100 p-6">
@@ -49,7 +62,13 @@ const JobSearchPage: React.FC = () => {
 
       {/* メインコンテンツ（求人リストセクション） */}
       <main className="flex-1 bg-white p-6 rounded-lg shadow-lg ml-0 md:ml-6">
-        <JobList jobs={jobs} />
+        {error ? (
+          <p className="text-red-500">{error}</p>
+        ) : loading ? (
+          <p>読み込み中...</p>
+        ) : (
+          <JobList jobs={jobs} />
+        )}
       </main>
     </div>
   );
