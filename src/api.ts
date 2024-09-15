@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // APIエンドポイントのURL（環境変数から取得）
-const API_URL = process.env.REACT_APP_API_URL || 'https://your-heroku-backend-url/api/v1';
+const API_URL = process.env.REACT_APP_API_URL || 'https://lit-scrubland-20921-8222011ed7f3.herokuapp.com/api/v1';
 
 // 求人一覧の取得
 export const fetchJobs = async ({ category, salary }: { category: string; salary: number }) => {
