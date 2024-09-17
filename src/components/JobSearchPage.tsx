@@ -13,6 +13,9 @@ const JobSearchPage: React.FC = () => {
   const [error, setError] = useState<string | null>(null);  
 
   useEffect(() => {
+    console.log('Current category:', category); // ここでcategoryの状態を確認
+    console.log('Current salary:', salary);
+
     const loadJobs = async () => {
       setLoading(true);
       try {

@@ -7,9 +7,11 @@ interface JobCategoryFilterProps {
 }
 
 const JobCategoryFilter: React.FC<JobCategoryFilterProps> = ({ onChangeCategory }) => {
-    useEffect(() => {
-        onChangeCategory("sales"); // 初期状態で "sales" を選択
-      }, [onChangeCategory]);
+    const handleCategoryChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log('Selected category:', e.target.value); // ここでカテゴリーの値をログに出力
+        onChangeCategory(e.target.value);
+    };
+
     return (
         <div className="p-4 bg-gray-100 rounded shadow-lg">
             <h3 className="text-lg font-bold mb-4">求人カテゴリ</h3>
