@@ -19,6 +19,7 @@ export const fetchJobs = async ({ category, salary }: { category: string; salary
 
 
 export const postJob = async (jobData: { title: string, salary: number, category: string }) => {
+  console.log('Posting job with data:', jobData);
   try {
     const response = await axios.post(`${API_URL}/jobs`, jobData);
     return response.data;
