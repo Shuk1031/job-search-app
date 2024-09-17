@@ -14,11 +14,11 @@ const JobCategoryFilter: React.FC<JobCategoryFilterProps> = ({ onChangeCategory 
         <div className="p-4 bg-gray-100 rounded shadow-lg">
             <h3 className="text-lg font-bold mb-4">求人カテゴリ</h3>
             <div className="space-y-2">
-                <label className="flex items-center">
+            <label className="flex items-center">
                     <input 
                         type="radio" 
                         name="category" 
-                        value="sales" 
+                        value="engineer" 
                         className="mr-2"
                         onChange={(e) => onChangeCategory(e.target.value)} 
                     />
