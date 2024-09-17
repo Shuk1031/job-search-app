@@ -11,6 +11,7 @@ const JobPostForm: React.FC = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Submitting job with data:', { title, salary, category });
     await postJob({ title, salary: Number(salary), category });
     navigate('/');
   };
@@ -44,9 +45,13 @@ const JobPostForm: React.FC = () => {
         <label className="block text-sm font-medium text-gray-700">カテゴリ:</label>
         <select 
           value={category} 
-          onChange={(e) => setCategory(e.target.value)} 
+          onChange={(e) => {
+            console.log('Category selected:', e.target.value);
+            setCategory(e.target.value);
+          }} 
           className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         >
+          <option value="">カテゴリを選択してください</option>
           <option value="sales">営業</option>
           <option value="engineer">エンジニア</option>
         </select>
