@@ -18,7 +18,7 @@ const JobCategoryFilter: React.FC<JobCategoryFilterProps> = ({ onChangeCategory 
                     <input 
                         type="radio" 
                         name="category" 
-                        value="engineer" 
+                        value="sales" 
                         className="mr-2"
                         onChange={(e) => onChangeCategory(e.target.value)} 
                     />
