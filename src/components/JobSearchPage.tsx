@@ -11,7 +11,13 @@ const JobSearchPage: React.FC = () => {
   const [jobs, setJobs] = useState([]);  
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);  
+  
+  const handleCategoryChange = (newCategory: string) => {
+    console.log('カテゴリーが変更されました:', newCategory);
+    setCategory(newCategory);
+  };
 
+ 
   useEffect(() => {
     console.log('Current category:', category); // ここでcategoryの状態を確認
     console.log('Current salary:', salary);
@@ -36,7 +42,7 @@ const JobSearchPage: React.FC = () => {
       
       <aside className="w-full md:w-1/4 bg-white p-6 rounded-lg shadow-lg mb-6 md:mb-0">
         <h1 className="text-xl font-bold mb-6 text-gray-800">求人検索</h1>
-        <JobCategoryFilter onChangeCategory={setCategory} />
+        <JobCategoryFilter onChangeCategory={handleCategoryChange/*setCategory*/} />
         <SalaryFilter onChangeSalary={setSalary} />
       </aside>
 

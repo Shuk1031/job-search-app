@@ -22,7 +22,7 @@ const JobCategoryFilter: React.FC<JobCategoryFilterProps> = ({ onChangeCategory 
                         name="category" 
                         value="sales" 
                         className="mr-2"
-                        onChange={(e) => onChangeCategory(e.target.value)} 
+                        onChange={handleCategoryChange} 
                     />
                     <span>営業</span>
                 </label>
@@ -32,7 +32,7 @@ const JobCategoryFilter: React.FC<JobCategoryFilterProps> = ({ onChangeCategory 
                         name="category" 
                         value="engineer" 
                         className="mr-2"
-                        onChange={(e) => onChangeCategory(e.target.value)} 
+                        onChange={handleCategoryChange/*(e) => onChangeCategory(e.target.value)*/} 
                     />
                     <span>エンジニア</span>
                 </label>
